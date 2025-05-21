@@ -160,6 +160,12 @@ func (r *SheetContent) UnmarshalJSON(bytes []byte) error {
 				return err
 			}
 			r.Float = &float
+		} else if strings.Contains(str, "e") {
+			float, err := strconv.ParseFloat(str, 64)
+			if err != nil {
+				return err
+			}
+			r.Float = &float
 		} else {
 			integer, err := strconv.ParseInt(str, 10, 64)
 			if err != nil {
